@@ -1,128 +1,111 @@
-/*
-    SI YO INGRESARÁ DIRECTAMENTE
-    A DASHBOARD.HTML 
-    SIN HABERME LOGEADO
-    DEBERIA DE DEVOLVERME A INDEX.HTML
-
-    --> codigo parecido dentro de profefavorito
-    --> localStorage()
-*/
-
-const compras = [
-    {   
-        "id": "12",
-        "uuid": "15414581asda1a1x",
-        "nombre": "Compra en Real Plaza",
-        "monto": "S/. 14.25",
-        "detalle": "La compra se realizo en Real plaza La Marina a las 9:30pm",
-        "productos": [
-            {
-                "SKU": "14815",
-                "nombre": "Cuerda de pescador - 1m",
-                "monto": "S/ 10.25"
-            },
-            {
-                "SKU": "145811",
-                "nombre": "Gaseosa Inka Cola",
-                "monto": "S/ 2.00"
-            },
-            {
-                "SKU": "148112",
-                "nombre": "Gaseosa Coca Cola",
-                "monto": "S/ 2.00"
-            }
-        ]
+document.addEventListener('DOMContentLoaded', function() {
+const viajes = [
+    {
+        "id": "1",
+        "duracion": "2 horas",
+        "fecha": "2024-04-24",
+        "origen": "Lima",
+        "destino": "Cusco",
+        "conductor": "Juan Pérez"
     },
     {
-        "id": "16",
-        "uuid": "15414581ytytaaddq1",
-        "nombre": "Compra en Monterrico",
-        "monto": "S/. 48.25",
-        "detalle": "La compra se realizo en Monterrico a las 7:20pm",
-        "productos": [
-            {
-                "SKU": "177774",
-                "nombre": "Pala de montar",
-                "monto": "S/ 20.25"
-            },
-            {
-                "SKU": "177771",
-                "nombre": "Pintura SoldiMix",
-                "monto": "S/ 9.00"
-            },
-            {
-                "SKU": "177779",
-                "nombre": "Terrocal en Pomo",
-                "monto": "S/ 11.00"
-            }
-        ]
+        "id": "2",
+        "duracion": "3 horas",
+        "fecha": "2024-04-23",
+        "origen": "Arequipa",
+        "destino": "Lima",
+        "conductor": "María Rodríguez"
     },
     {
-        "id": "18",
-        "uuid": "1566664514aa",
-        "nombre": "Compra en Azangaro",
-        "monto": "S/. 200",
-        "detalle": "La compra se realizo en Azangaro a las 6:06pm",
-        "productos": [
-            {
-                "SKU": "666",
-                "nombre": "Vela negra",
-                "monto": "S/ 200"
-            }
-        ]
+        "id": "3",
+        "duracion": "4 horas",
+        "fecha": "2024-04-22",
+        "origen": "Trujillo",
+        "destino": "Chiclayo",
+        "conductor": "Pedro Gómez"
+    },
+    {
+        "id": "4",
+        "duracion": "2.5 horas",
+        "fecha": "2024-04-21",
+        "origen": "Piura",
+        "destino": "Tumbes",
+        "conductor": "Ana Martínez"
+    },
+    {
+        "id": "5",
+        "duracion": "3 horas",
+        "fecha": "2024-04-20",
+        "origen": "Cajamarca",
+        "destino": "Chachapoyas",
+        "conductor": "Carlos González"
+    },
+    {
+        "id": "6",
+        "duracion": "5 horas",
+        "fecha": "2024-04-19",
+        "origen": "Iquitos",
+        "destino": "Tarapoto",
+        "conductor": "Luis Pérez"
+    },
+    {
+        "id": "7",
+        "duracion": "6 horas",
+        "fecha": "2024-04-18",
+        "origen": "Pucallpa",
+        "destino": "Huanuco",
+        "conductor": "Elena García"
+    },
+    {
+        "id": "8",
+        "duracion": "4.5 horas",
+        "fecha": "2024-04-17",
+        "origen": "Huancayo",
+        "destino": "Arequipa",
+        "conductor": "Fernando Rodríguez"
+    },
+    {
+        "id": "9",
+        "duracion": "3.5 horas",
+        "fecha": "2024-04-16",
+        "origen": "Tacna",
+        "destino": "Moquegua",
+        "conductor": "Jorge Sánchez"
+    },
+    {
+        "id": "10",
+        "duracion": "2 horas",
+        "fecha": "2024-04-15",
+        "origen": "Ica",
+        "destino": "Nazca",
+        "conductor": "Mónica López"
     }
 ];
-//Imprimir esa lista de compras
-const $misProductos = $("#misProductos");
-compras.forEach((compra) => {
-    //2. Crear una NUEVA URL donde usemos de parametro el ID
-    const link = "producto.html?idcompra="+compra.id;
-    const template = `
-        <li class="collection-item avatar" data-id="${compra.id}" data-uuid="${compra.uuid}">
-            <i class="material-icons circle red">play_arrow</i>
-            <span class="title">${compra.nombre}</span>
-            <p>
-                ${compra.detalle}        
-            </p>
-            <p class="precio">
-                ${compra.monto}
-            </p>
-            <a href="${link}" class="waves-effect waves-light btn btnIcon">
-                <i class="material-icons">grade</i>
-                Ver producto
-            </a>
-        </li>
-    `;
-    $misProductos.append(template);
-});
 
-/*
-    3. En esa URL vamos a leer el parametro 
-    e imprimir los datos de los productos
-*/
+const $misViajes = document.getElementById("misViajes");
 
-const queryString = window.location.search;
-const params = new URLSearchParams(queryString);
-const idcompra = params.get("idcompra");
-let misproductos = [];
-if (idcompra) {
-    compras.forEach((compra) => {
-        if (compra.id == idcompra) {
-            const mytitle = "Historial de productos de " + compra.nombre;
-            $("#myTitle").html(mytitle);
-            misproductos = compra.productos;           
-        }
+function mostrarViajes(viajes) {
+    viajes.forEach((viaje) => {
+        const template = `
+            <div class="viaje-item">
+                <img src="images/sample-1.jpg" alt="Imagen de referencia del viaje">
+                <div class="viaje-info">
+                    <p>Duración: ${viaje.duracion}</p>
+                    <p>Fecha: ${viaje.fecha}</p>
+                    <p>Origen: ${viaje.origen}</p>
+                    <p>Destino: ${viaje.destino}</p>
+                    <p>Conductor: ${viaje.conductor}</p>
+                </div>
+            </div>
+        `;
+        $misViajes.insertAdjacentHTML('beforeend', template);
     });
-    if (misproductos.length > 0) {
-        misproductos.forEach((producto)=> {
-            const template = `
-                <li class="collection-item">
-                    <p class="sku">SKU: ${producto.SKU}</p>
-                    <p class="nombre">${producto.nombre}</p>
-                    <p class="monto">${producto.monto}</p>
-                </li>
-            `;
-            $("#myProducts").append(template);
-        });
-    }
 }
+
+mostrarViajes(viajes.slice(0, 4));
+
+$("#verMasButton").on("click", function() {
+    mostrarViajes(viajes);
+    $(this).hide();
+});
+});

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">        
+    <meta name="description" content="">
+    <title>Dashboard en JS</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">        
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+    <section>
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo">MedinaUber</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="pusuario.html">Mi Perfil</a></li>
+                  <li><a href="!#">Mi Perfil</a></li>
+                  <li><a href="#" id="logoutButton">Salir</a></li> <!-- Modificado: Agregamos el id "logout" -->
+
+                  
+              </ul>
+          </div>
+          
+          </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 offset-m3">
+                    <h1>Mis compras</h1>
+                    <ul class="collection" id="misProductos">
+                        <!-- Aquí se mostrarán los productos -->
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 offset-m3">
+                    <h2>Ingrese su nombre y apellido</h2>
+                    <div class="input-field">
+                        <input type="text" id="nombre">
+                        <label for="nombre">Nombre</label>
+                    </div>
+                   
